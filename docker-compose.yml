@@ -1,0 +1,20 @@
+version: "4.1"
+services:
+   nagios:
+     container_name: nagios
+     image: manios/nagios:latest
+     environment:
+       - TZ=Europe/Istanbul
+     networks:
+       - nagios
+     volumes:
+       - ./data/etc/:/opt/nagios/etc/
+       - ./data/var:/opt/nagios/var/
+       - ./data/ssmtp:/etc/ssmtp/
+       - ./data/plugings:/opt/Custom-Nagios-Plugins
+     ports:
+       - 8080:80
+networks:
+  nagios:
+volumes:
+  data:
